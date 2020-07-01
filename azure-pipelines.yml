@@ -6,14 +6,27 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+#pool:
+#  vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+#- script: echo Hello, world!
+#  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+# - script: |
+#   echo Add other tasks to build, test, and deploy your project.
+#   echo See https://aka.ms/yaml
+# displayName: 'Run a multi-line script'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'DevOpsServiceConnection'
+    subscriptionId: 'cec8f123-6602-4832-9160-30d0c073ea71'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'RG-NEW'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    deploymentMode: 'Incremental'
+
+
