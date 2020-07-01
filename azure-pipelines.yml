@@ -18,15 +18,13 @@ steps:
 #   echo See https://aka.ms/yaml
 # displayName: 'Run a multi-line script'
 
-- task: AzureResourceManagerTemplateDeployment@3
+- task: AzureCLI@2
   inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'DevOpsServiceConnection'
-    subscriptionId: 'cec8f123-6602-4832-9160-30d0c073ea71'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'RG-NEW'
-    location: 'West Europe'
-    templateLocation: 'Linked artifact'
-    deploymentMode: 'Incremental'
+    azureSubscription: 'DevOpsServiceConnection'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az --version
+      az account show
 
 
