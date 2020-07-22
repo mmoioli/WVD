@@ -58,7 +58,15 @@
 			"type": "Microsoft.VirtualMachineImages/imageTemplates",
 			"apiVersion": "2019-05-01-preview",
 			"location": "[resourcegroup().location]",
-			"identity":{},	
+			            "userIdentity": "enabled"
+               				 },
+            				"identity": {
+              			  	"type": "UserAssigned",
+                        			"userAssignedIdentities": {
+                        			"<imgBuilderId>": {}
+                            
+                    			}
+                   			 },	
 			"dependsOn": [
 			],
 			"properties": {
